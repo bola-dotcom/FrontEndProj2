@@ -1,13 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>recipe-details</ion-title>
+    <ion-title>{{ recipe?.strMeal }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content *ngIf="recipe">
+  <img [src]="recipe.strMealThumb"/>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Category:</strong> {{ recipe.strCategory }}</p>
+          <p><strong>Area:</strong> {{ recipe.strArea }}</p>
+<p>{{ recipe.strInstructions }}</p>
+    </ion-card-content>
+  </ion-card>
+
     <ion-toolbar>
       <ion-title size="large">recipe-details</ion-title>
     </ion-toolbar>
-  </ion-header>
+
 </ion-content>

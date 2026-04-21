@@ -1,38 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { IonCardContent,IonCardHeader,IonCard,IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { RecipeService } from 'src/app/services/recipe.service';
+import { RecipeService } from '../../services/recipe.service';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule,IonCardContent,IonCardHeader,IonCard,IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonicModule]
+ 
 })
-
-
 export class HomePage implements OnInit {
+
   recipes: any[] = [];
+
   constructor(private recipeService: RecipeService) {}
-  
 
-ngOnInit() {
-  this.loadRecipes();
-  }
-
-  loadRecipes(){
-    this.recipeService.getRecipes().subscribe({
-next:(data:any) => {
-  this.recipes = data.meals || [];
-},
-error:(err) =>{
-  console.error('API error:', err);
-}
-
+  ngOnInit() {
+    this.recipeService.getRecipes().subscribe((data: any) => {
+      this.recipes = data.meals || [];
     });
   }
-  
 }

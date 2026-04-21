@@ -1,16 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Recipes</ion-title>
+    <ion-title>Recipe App</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Hello</h1>
-<ion-card *ngFor = "let recipe of recipes">
-  <img [src] = "recipe.strMealThumb"/>
 
-  <ion-card-header>
-   <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
+  <ion-card *ngFor="let recipe of recipes" [routerLink]="['/recipe', recipe.idMeal]">
+    <img [src]="recipe.strMealThumb" />
+
+    <ion-card-header>
+      <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
     </ion-card-header>
-</ion-card>
+
+  </ion-card>
+
 </ion-content>
