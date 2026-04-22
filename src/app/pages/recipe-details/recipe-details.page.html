@@ -6,6 +6,8 @@
 
 <ion-content *ngIf="recipe">
   <img [src]="recipe.strMealThumb"/>
+<ion-button expand = "block" (click)="addToFavourites()">
+Add to favourites</ion-button>
 
   <ion-card>
     <ion-card-header>

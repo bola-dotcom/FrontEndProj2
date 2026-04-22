@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
-
+import { StorageService } from '../../services/storage';
 @Component({
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.page.html',
@@ -17,7 +17,8 @@ export class RecipeDetailsPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private storage: StorageService
   ) {}
 
   ngOnInit() {
@@ -27,6 +28,21 @@ export class RecipeDetailsPage implements OnInit {
       this.recipeService.getRecipeById(id).subscribe((data: any) => {
         this.recipe = data.meals[0];
       });
+    }
+  }
+
+  async addToFavourites(){
+
+    let favourites = await this.storage.get('favourites');
+
+    if(!favourites){
+      favourites = [];
+    }
+    const exists = favourites.find((r:any) => r.idMeal === this.recipe.idMeal);
+
+    if(!exists){
+      favourites.push(this.recipe);
+      await this.storage.set('favourites', favourites);
     }
   }
 }
