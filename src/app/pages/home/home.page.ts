@@ -26,19 +26,22 @@ searchTerm: string = '';
   goToRecipe(id: string) {
   this.router.navigate(['/recipe', id]);
 }
-  ngOnInit() {
-    this.recipeService.getRecipes().subscribe((data: any) => {
-      this.recipes = data.meals || [];
-      this.filteredRecipes = this.recipes;
-      
-    });
-   
+ngOnInit() {
+  this.recipeService.getRecipes().subscribe((data: any) => {
+    this.recipes = data.meals || [];
+    this.filteredRecipes = this.recipes;
+  });
 }
 
-filterRecipes(){
-  const term = this.searchTerm.toLowerCase();
+filterRecipes(event: any) {
 
-  this.filteredRecipes = this.recipes.filter((recipe:any) =>
-  recipe.str.Meal.toLowerCase().include(term));
+  const term = event.target.value?.toLowerCase() || '';
+
+  console.log("SEARCH TERM:", term); // debug
+
+  this.filteredRecipes = this.recipes.filter((recipe: any) =>
+    recipe.strMeal.toLowerCase().includes(term)
+  );
+
 }
 }

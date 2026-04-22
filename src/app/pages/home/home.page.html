@@ -7,10 +7,8 @@
 Go to favourites
 </ion-button>
 <ion-content>
-<ion-searchbar
-[(ngModel)]="searchTerm"
-(ionInput)="filterRecipes()"
-placeholder="Search recipes">
+<ion-searchbar 
+  (ionInput)="filterRecipes($event)">
 </ion-searchbar>
   <ion-card *ngFor="let recipe of filteredRecipes">
     
