@@ -1,17 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-title>Favourites</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-   <ion-card *ngFor="let recipe of favourites">
+<ion-content>
+
+  <ion-card *ngFor="let recipe of favourites" [routerLink] = "['/recipe', recipe.idMeal]" button>
     <img [src]="recipe.strMealThumb" />
 
     <ion-card-header>
       <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
     </ion-card-header>
+
+    <ion-button color = "red" (click) ="removeFavourite(recipe.idMeal)">
+      removeFavourite</ion-button>
   </ion-card>
 
-  <p *ngIf="favourites.length === 0">No favourites yet</p>
+  <ion-text *ngIf="favourites.length === 0">
+    <p style="text-align:center;">No favourites yet</p>
+  </ion-text>
+
 </ion-content>
