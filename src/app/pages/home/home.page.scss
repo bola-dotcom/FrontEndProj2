@@ -1,0 +1,55 @@
+ion-card-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #222;
+}
+
+ion-card-content{
+    text-align: center;
+}
+
+ion-card-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+p {
+  line-height: 1.5;
+  font-size: 0.9rem;
+color: #666;
+margin:0;
+}
+
+h2 {
+font-size: 1.2rem;
+color: #222;
+font-weight:600;
+margin:8px 0 4px 0;
+}
+ion-button{
+    margin: 10px;
+}
+
+ion-searchbar {
+    margin: 10px;
+}
+ion-card {
+    margin: 12px;
+    border-radius: 16px;
+    overflow:hidden;
+}
+
+img{
+    height: 200px;
+    object-fit: cover;
+}
+ion-card-title {
+    font-size: 1.2rem;
+    font-weight:600;
+}
+ion-title{
+    text-align: center;
+    font-size: larger;
+}
+
+

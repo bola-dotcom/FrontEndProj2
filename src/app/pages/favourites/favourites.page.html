@@ -8,17 +8,25 @@
 
   <ion-card *ngFor="let recipe of favourites" [routerLink] = "['/recipe', recipe.idMeal]" button>
     <img [src]="recipe.strMealThumb" />
+  <ion-card-content>
 
-    <ion-card-header>
-      <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
-    </ion-card-header>
+    <h2 class="recipe-title">
+      {{ recipe.strMeal }}
+    </h2>
 
-    <ion-button color = "red" (click) ="removeFavourite(recipe.idMeal)">
-      removeFavourite</ion-button>
-  </ion-card>
+    <ion-button 
+      color="danger" 
+      expand="block"
+      (click)="removeFavourite(recipe.idMeal); $event.stopPropagation()">
+      Remove
+    </ion-button>
+
+  </ion-card-content>
+
+</ion-card>
 
   <ion-text *ngIf="favourites.length === 0">
-    <p style="text-align:center;">No favourites yet</p>
+    <p style="text-align:center; margin-top:20px;">No favourites yet</p>
   </ion-text>
 
 </ion-content>

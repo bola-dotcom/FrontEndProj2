@@ -1,28 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{ recipe?.strMeal }}</ion-title>
+    <ion-title size="large">
+      <strong>{{ recipe?.strMeal }}</strong>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="recipe">
-  <img [src]="recipe.strMealThumb"/>
-<ion-button expand = "block" (click)="addToFavourites()">
-Add to favourites</ion-button>
 
+  <!-- IMAGE -->
+  <img [src]="recipe.strMealThumb" class="recipe-image"/>
+
+  <!-- CENTERED BUTTON -->
+  <div class="button-container">
+    <ion-button (click)="addToFavourites()">
+      ❤️ Add to Favourites
+    </ion-button>
+  </div>
+
+  <!-- INFO CARD -->
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
-    </ion-card-header>
-
     <ion-card-content>
       <p><strong>Category:</strong> {{ recipe.strCategory }}</p>
-          <p><strong>Area:</strong> {{ recipe.strArea }}</p>
-<p>{{ recipe.strInstructions }}</p>
+      <p><strong>Area:</strong> {{ recipe.strArea }}</p>
     </ion-card-content>
   </ion-card>
 
-    <ion-toolbar>
-      <ion-title size="large">recipe-details</ion-title>
-    </ion-toolbar>
+  <!-- INSTRUCTIONS CARD -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="instructions-title">
+        🧑‍🍳 Instructions
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="instructions">
+        {{ recipe.strInstructions }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- FOOTER TEXT -->
+  <ion-text>
+    <p style="text-align:center; margin:20px;">
+      Access favourites from the home page
+    </p>
+  </ion-text>
 
 </ion-content>

@@ -5,6 +5,7 @@ import { RecipeService } from '../../services/recipe.service';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Device } from '@capacitor/device';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -13,24 +14,29 @@ import { FormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, RouterModule, FormsModule]
 })
 export class HomePage implements OnInit {
-
+deviceInfo: any;
   recipes: any[] = [];
 
 filteredRecipes: any[] = [];
 searchTerm: string = '';
+isLoading = true;
 
   constructor(private recipeService: RecipeService,
     private router: Router
   ) {}
-
+ 
   goToRecipe(id: string) {
   this.router.navigate(['/recipe', id]);
 }
+
 ngOnInit() {
   this.recipeService.getRecipes().subscribe((data: any) => {
     this.recipes = data.meals || [];
     this.filteredRecipes = this.recipes;
+    this.isLoading = false;
+    
   });
+  this.getDeviceInfo();
 }
 
 filterRecipes(event: any) {
@@ -43,5 +49,8 @@ filterRecipes(event: any) {
     recipe.strMeal.toLowerCase().includes(term)
   );
 
+}
+async getDeviceInfo() {
+ this.deviceInfo = await Device.getInfo();
 }
 }

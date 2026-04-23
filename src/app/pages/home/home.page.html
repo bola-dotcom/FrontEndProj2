@@ -1,27 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Recipe App</ion-title>
+    <ion-title><strong>Recipe App</strong></ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-button expand = "block" routerLink="/favourites">
+
+<ion-card >
+  <ion-card-header >
+    <ion-card-title >Device Info</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content *ngIf="deviceInfo">
+    <p><strong>Platform:</strong> {{ deviceInfo.platform }}</p>
+    <p><strong>Model:</strong> {{ deviceInfo.model }}</p>
+  </ion-card-content>
+</ion-card>
+
+<ion-button expand= "block" routerLink="/favourites">
 Go to favourites
 </ion-button>
+
+
 <ion-content>
+
+<ion-spinner *ngIf="isLoading" 
+style="display:block; margin:20px auto;">
+</ion-spinner>
+
 <ion-searchbar 
-  (ionInput)="filterRecipes($event)">
+  (ionInput)="filterRecipes($event)"
+  placeholder="Search recipes"
+  show-clear-button= "always">
 </ion-searchbar>
-  <ion-card *ngFor="let recipe of filteredRecipes">
+
+<div *ngIf="!isLoading">
+  <ion-card *ngFor="let recipe of filteredRecipes" (click)="goToRecipe(recipe.idMeal)" button>
     
     <img [src]="recipe.strMealThumb" />
-
-    <ion-card-header>
-      <ion-card-title>{{ recipe.strMeal }}</ion-card-title>
-    </ion-card-header>
+<ion-card-content>
+  <h2>{{ recipe.strMeal }}</h2>
+  <p>{{ recipe.strCategory }}</p>
+</ion-card-content>
+    
 
     <ion-button expand="block" (click)="goToRecipe(recipe.idMeal)">
       View Recipe
     </ion-button>
 
   </ion-card>
-
+</div>
 </ion-content>
