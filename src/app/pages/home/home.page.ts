@@ -43,7 +43,7 @@ filterRecipes(event: any) {
 
   const term = event.target.value?.toLowerCase() || '';
 
-  console.log("SEARCH TERM:", term); // debug
+  console.log("SEARCH TERM:", term); 
 
   this.filteredRecipes = this.recipes.filter((recipe: any) =>
     recipe.strMeal.toLowerCase().includes(term)

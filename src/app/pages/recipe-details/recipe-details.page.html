@@ -8,17 +8,17 @@
 
 <ion-content *ngIf="recipe">
 
-  <!-- IMAGE -->
+
   <img [src]="recipe.strMealThumb" class="recipe-image"/>
 
-  <!-- CENTERED BUTTON -->
+  
   <div class="button-container">
     <ion-button (click)="addToFavourites()">
       ❤️ Add to Favourites
     </ion-button>
   </div>
 
-  <!-- INFO CARD -->
+
   <ion-card>
     <ion-card-content>
       <p><strong>Category:</strong> {{ recipe.strCategory }}</p>
@@ -26,7 +26,7 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- INSTRUCTIONS CARD -->
+
   <ion-card>
     <ion-card-header>
       <ion-card-title class="instructions-title">
@@ -41,7 +41,7 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- FOOTER TEXT -->
+  
   <ion-text>
     <p style="text-align:center; margin:20px;">
       Access favourites from the home page
